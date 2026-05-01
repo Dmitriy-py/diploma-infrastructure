@@ -1,0 +1,16 @@
+loki:
+  persistence:
+    enabled: true
+    storageClassName: local-path
+    size: 5Gi
+  storage:
+    type: filesystem
+    bucketNames:
+      chunks: loki-write
+
+promtail:
+  enabled: true
+  config:
+    clients:
+    - url: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
+      tenant_id: fake
